@@ -1,51 +1,44 @@
 #include <stdio.h>
 
 int main() {
-    int r1, c1, r2, c2;
+    int n1, n2;
 
-    printf("Enter rows and columns for First Matrix: ");
-    if (scanf("%d %d", &r1, &c1) != 2 || r1 <= 0 || c1 <= 0) return 0;
+    printf("Enter size of first array: ");
+    if (scanf("%d", &n1) != 1 || n1 <= 0) return 0;
 
-    printf("Enter rows and columns for Second Matrix: ");
-    if (scanf("%d %d", &r2, &c2) != 2 || r2 <= 0 || c2 <= 0) return 0;
-
-    if (c1 != r2) {
-        printf("Matrix multiplication not possible!\n");
-        return 0;
+    int a[n1];
+    printf("Enter %d elements for first array:\n", n1);
+    for (int i = 0; i < n1; i++) {
+        scanf("%d", &a[i]);
     }
 
-    int A[r1][c1], B[r2][c2], C[r1][c2];
+    printf("Enter size of second array: ");
+    if (scanf("%d", &n2) != 1 || n2 <= 0) return 0;
 
-    printf("Enter elements of First Matrix (%dx%d):\n", r1, c1);
-    for (int i = 0; i < r1; i++) {
-        for (int j = 0; j < c1; j++) {
-            scanf("%d", &A[i][j]);
-        }
+    int b[n2];
+    printf("Enter %d elements for second array:\n", n2);
+    for (int i = 0; i < n2; i++) {
+        scanf("%d", &b[i]);
     }
 
-    printf("Enter elements of Second Matrix (%dx%d):\n", r2, c2);
-    for (int i = 0; i < r2; i++) {
-        for (int j = 0; j < c2; j++) {
-            scanf("%d", &B[i][j]);
-        }
+    int merged[n1 + n2];
+
+    // Copy first array into merged array
+    for (int i = 0; i < n1; i++) {
+        merged[i] = a[i];
     }
 
-    for (int i = 0; i < r1; i++) {
-        for (int j = 0; j < c2; j++) {
-            C[i][j] = 0;
-            for (int k = 0; k < c1; k++) {
-                C[i][j] += A[i][k] * B[k][j];
-            }
-        }
+    // Copy second array into merged array
+    for (int i = 0; i < n2; i++) {
+        merged[n1 + i] = b[i];
     }
 
-    printf("Product Matrix:\n");
-    for (int i = 0; i < r1; i++) {
-        for (int j = 0; j < c2; j++) {
-            printf("%d ", C[i][j]);
-        }
-        printf("\n");
+    // Display merged array
+    printf("\nMerged Array: ");
+    for (int i = 0; i < n1 + n2; i++) {
+        printf("%d ", merged[i]);
     }
+    printf("\n");
 
     return 0;
 }
