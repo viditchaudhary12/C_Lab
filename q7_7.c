@@ -1,43 +1,41 @@
 #include <stdio.h>
 
 int main() {
-    int r, c;
+    int n;
 
-    printf("Enter rows and columns: ");
-    if (scanf("%d %d", &r, &c) != 2 || r <= 0 || c <= 0) {
-        printf("Invalid dimensions\n");
-        return 0;
+    printf("Enter number of elements: ");
+    if (scanf("%d", &n) != 1 || n <= 0) return 0;
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
     }
 
-    int A[r][c], B[r][c], C[r][c];
+    // Display before sorting
+    printf("\nArray before sorting: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
 
-    printf("Enter elements of First Matrix (%dx%d):\n", r, c);
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            scanf("%d", &A[i][j]);
+    // Bubble Sort Algorithm
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
         }
     }
 
-    printf("Enter elements of Second Matrix (%dx%d):\n", r, c);
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            scanf("%d", &B[i][j]);
-        }
+    // Display after sorting
+    printf("\nArray after sorting (Ascending): ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
-
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            C[i][j] = A[i][j] + B[i][j];
-        }
-    }
-
-    printf("Sum Matrix:\n");
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            printf("%d ", C[i][j]);
-        }
-        printf("\n");
-    }
+    printf("\n");
 
     return 0;
 }
