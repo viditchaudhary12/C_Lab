@@ -14,7 +14,7 @@ int main() {
     printf("Enter roll number: ");
     scanf("%d", &s.roll);
     printf("Enter name: ");
-    scanf("%s", s.name);
+    scanf(" %[^\n]", s.name);
     printf("Enter marks in 3 subjects: ");
     scanf("%f %f %f", &s.m1, &s.m2, &s.m3);
 
